@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Menaka App</string>
+
+    <!-- Login Fragment strings -->
+    <string name="login_fragment">Login fragment</string>
+    <string name="nav_register_fragment">Click here to Register</string>
+    <string name="login_text">Login</string>
+
+    <!-- Register Fragment strings -->
+    <string name="register_fragment">Register fragment</string>
+
+
+    <!-- menu strings -->
+    <string name="about">About</string>
+    <string name="help">Help</string>
+</resources>
