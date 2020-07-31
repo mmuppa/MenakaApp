@@ -8,6 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import edu.tacoma.uw.mmuppa.menakaapp.R;
@@ -18,8 +20,8 @@ import edu.tacoma.uw.mmuppa.menakaapp.R;
 public class LoginFragment extends Fragment {
 
     public interface LoginFragmentListener {
-        void register();
-        void login(String email, String pwd);
+        void launchRegisterFragment();
+        void login(String email, String pwd, boolean shouldRemember);
     }
     public LoginFragment() {
         // Required empty public constructor
@@ -39,15 +41,18 @@ public class LoginFragment extends Fragment {
         registerTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((LoginFragmentListener) getActivity()).register();
+                ((LoginFragmentListener) getActivity()).launchRegisterFragment();
             }
         });
+        final EditText emailEditText = view.findViewById(R.id.login_email_edit_text);
+        final CheckBox rememberCheckBox = view.findViewById(R.id.login_check_box);
         Button loginButton = view.findViewById(R.id.login_button);
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((LoginFragmentListener) getActivity()).login
-                        ("", "");
+                ((LoginFragmentListener) getActivity())
+                        .login(emailEditText.getText().toString(), ""
+                                , rememberCheckBox.isChecked());
             }
         });
         return view;
