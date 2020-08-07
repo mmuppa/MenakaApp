@@ -11,8 +11,10 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import edu.tacoma.uw.mmuppa.menakaapp.R;
+import edu.tacoma.uw.mmuppa.menakaapp.authenticate.model.User;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -50,9 +52,16 @@ public class LoginFragment extends Fragment {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((LoginFragmentListener) getActivity())
-                        .login(emailEditText.getText().toString(), ""
-                                , rememberCheckBox.isChecked());
+               try {
+                   User user = new User(emailEditText.getText().toString()
+                           , rememberCheckBox.isChecked());
+                   ((LoginFragmentListener) getActivity())
+                           .login(emailEditText.getText().toString(), ""
+                                   , rememberCheckBox.isChecked());
+               } catch(IllegalArgumentException e) {
+                   Toast.makeText(v.getContext(), e.getMessage(), Toast.LENGTH_SHORT)
+                           .show();
+               }
             }
         });
         return view;
